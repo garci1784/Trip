@@ -4,7 +4,7 @@ public class Schedule
 {
     private String start_time;
     private String end_time;
-    private ArrayList<Route> tripRoute; // each schedule has a route
+    private ArrayList<Route> routes; // each schedule has a route
     private ArrayList<Vehicle> vehicles; // each schedule has a vehicle
     private ArrayList<Trip> trips; // each schedule has a trip
 
@@ -29,21 +29,59 @@ public class Schedule
         this.end_time = end_time;
     }
 
-    public void addRoute(Route trail)
+    public void addRoute(Route route)
     {
-        tripRoute = new ArrayList<>();
-        tripRoute.add(trail);
+        routes = new ArrayList<>();
+        routes.add(route);
+    }
+
+    public void addVehicle(Vehicle vehicle)
+    {
+        vehicles = new ArrayList<>();
+        vehicles.add(vehicle);
+    }
+
+    public void addTrips(Trip trip)
+    {
+        trips = new ArrayList<>();
+        trips.add(trip);
+    }
+
+    public void displayRoutes()
+    {
+        for (Route route:  routes) {
+            System.out.println("Route Start Point: " + route.getStart_point());
+            System.out.println("Route End Point: " + route.getEnd_point());
+        }
+    }
+
+    public void displayTrips()
+    {
+        for (Trip trip:  trips) {
+            System.out.println("Trip starts from: " + trip.getFrom());
+            System.out.println("Trip ends at: " + trip.getDestination());
+        }
+    }
+
+    public void displayVehicles()
+    {
+        for (Vehicle vehicle:  vehicles) {
+            System.out.println("Vehicle Make: " + vehicle.getMake());
+            System.out.println("Vehicle Model: " + vehicle.getModel());
+        }
     }
 
     @Override
     public String toString() {
         return "Schedule{" +
-                "start_time='" + start_time + '\'' +
+                "\nstart_time='" + start_time + '\'' +
                 ", end_time='" + end_time + '\'' +
-                ", tripRoute=" + tripRoute.get(0).getStart_point() +
-                " to " + tripRoute.get(0).getEnd_point() +
-                ", vehicles=" + vehicles +
-                ", trips=" + trips +
+                ", \n tripRoute=" + routes.get(0).getStart_point() +
+                " to " + routes.get(0).getEnd_point() +
+                ", \nvehicles=" + vehicles.get(0).getMake() +
+                " " + vehicles.get(0).getModel() +
+                ", \ntrips=" + trips.get(0).getFrom() +
+                " to " + trips.get(0).getDestination() +
                 '}';
     }
 }
